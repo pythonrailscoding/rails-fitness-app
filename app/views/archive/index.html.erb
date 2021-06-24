@@ -1,0 +1,51 @@
+<% content_for :title do %>
+  All Entries
+<% end %>
+
+<div class="columns is-centered mt-6">
+  <div class="column is-half">
+    <!--Example of for loop in RoR-->
+    <% @entries.each do |day, entries| %>
+      <h3 class="is-size-4 has-text-weight-bold mb-4 has-text-centered">
+        Entries for <%= day %></h3>
+      <nav class="level is-mobile">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Calories</p>
+            <p class="title"><%= entries.pluck(:calories).sum %><i>g</i></p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Carbohydrates</p>
+            <p class="title"><%= entries.pluck(:carbohydrates).sum %><i>g</i></p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Proteins</p>
+            <p class="title"><%= entries.pluck(:proteins).sum %><i>g</i></p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Fats</p>
+            <p class="title"><%= entries.pluck(:fats).sum %><i>g</i></p>
+          </div>
+        </div>
+      </nav>
+        <% entries.each do |entry| %>
+          <div class="card">
+            <div class="card-content">
+              <strong><%= entry.meal_type %></strong><br>
+              <%= entry.calories %> calories,
+              <%= entry.proteins %> g proteins,
+              <%= entry.carbohydrates %> g carbohydrates,
+              <%= entry.fats %> g fats,
+            </div>
+          </div>
+        <% end %>
+      <hr color="red">
+    <% end %>
+  </div>
+</div>
