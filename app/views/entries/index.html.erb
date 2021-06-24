@@ -1,6 +1,10 @@
 <% content_for :title do %>
-  FoodStreet &ndash; <%= DateTime.now.to_s(:nice_date) %>
+  Entries for Today &ndash; <%= DateTime.now.to_s(:nice_date) %>
 <% end %>
+
+<div class="column is-centered mt-6">
+  <center><%= link_to "View All Entries", archive_index_path, class: "button is-link is-centered is-outlined" %></center>
+</div>
 
 <div class="columns mt-6 is-centered">
     <% @entries.each do |entry| %>
@@ -21,11 +25,11 @@
         <div class="card-footer">
           <%= link_to 'Show', entry, class: "card-footer-item is-info" %>
           <%= link_to 'Edit', edit_entry_path(entry), class: "card-footer-item" %>
-          <%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-footer-item" %>
+          <%= link_to 'Delete', entry, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-footer-item" %>
         </div>
       </div>
     </div>
     <% end %>
 </div>
-<br>
+
 
